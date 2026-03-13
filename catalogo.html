@@ -6,6 +6,9 @@
     <title>Catalogo - Palio Scienze MMFFNN</title>
     
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <style>
         /* STILI GENERALI CON SFONDO SFOCATO */
@@ -92,7 +95,7 @@
             display: none; /* Nascosto di default */
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(10, 92, 10, 0.95); /* Sfondo verde scuro quasi opaco */
+            background-color: rgba(10, 92, 10, 0.95); 
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -108,7 +111,7 @@
             max-width: 600px;
             padding: 40px;
             box-sizing: border-box;
-            box-shadow: 0 24px 38px rgba(0,0,0,0.30), 0 9px 46px rgba(0,0,0,0.22); /* Elevation altissima */
+            box-shadow: 0 24px 38px rgba(0,0,0,0.30), 0 9px 46px rgba(0,0,0,0.22); 
             position: relative;
         }
 
@@ -252,7 +255,7 @@
             <span class="close-btn" id="close-modal">&times;</span>
             <h2>Prenotazione</h2>
             
-            <form action="https://formspree.io/f/xaqpbyer" method="POST">
+            <form id="order-form">
                 
                 <div class="form-group">
                     <label for="nome">Nome</label>
@@ -279,6 +282,8 @@
                     </select>
                 </div>
 
+                <div class="g-recaptcha" data-sitekey="6Ld4aYksAAAAAEwDuO_1nv_SZDKQSXOJ1FIy32l4" style="margin-bottom: 25px;"></div>
+
                 <button type="submit" class="btn-submit">Conferma Prenotazione</button>
             </form>
         </div>
@@ -290,35 +295,69 @@
         const cards = document.querySelectorAll('.card');
         const itemSelect = document.getElementById('item');
 
-        // Quando clicchi su una card...
+        // Apre il modal cliccando una card
         cards.forEach(card => {
             card.addEventListener('click', function() {
-                // Prende il nome del modello dall'attributo data-item della card
                 const selectedItem = this.getAttribute('data-item');
-                
-                // Imposta il menu a tendina sul modello corretto
                 for (let i = 0; i < itemSelect.options.length; i++) {
                     if (itemSelect.options[i].value === selectedItem) {
                         itemSelect.selectedIndex = i;
                         break;
                     }
                 }
-                
-                // Mostra il modal (il form) impostandolo a flex per centrarlo
                 modal.style.display = 'flex';
             });
         });
 
-        // Chiude il modal cliccando sulla X
+        // Chiude il modal con la X
         closeBtn.addEventListener('click', function() {
             modal.style.display = 'none';
         });
 
-        // Chiude il modal se clicchi sullo sfondo verde fuori dal riquadro bianco
+        // Chiude il modal cliccando fuori
         window.addEventListener('click', function(event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
+        });
+
+        // GESTIONE DELL'INVIO DEL FORM
+        const form = document.getElementById('order-form');
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault(); 
+            
+            // CONTROLLO CAPTCHA
+            var recaptchaResponse = grecaptcha.getResponse();
+            if(recaptchaResponse.length === 0) {
+                alert("Per favore, spunta la casella 'Non sono un robot' prima di inviare.");
+                return;
+            }
+            
+            const btn = document.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            btn.innerText = 'Elaborazione...';
+            
+            // ⚠️ INSERISCI QUI IL LINK DEL TUO SCRIPT DI GOOGLE SHEETS (PER IL CATALOGO) ⚠️
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwoF4k_UYcbDQO1uU14zC8di3-jXBGzqWXz9A0sKt0LaehIdMdvqaUY3maI8uiH7xln/exec';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => response.text()) 
+                .then(result => {
+                    if(result === "Successo") {
+                        alert('Prenotazione registrata con successo! Ti contatteremo a breve.');
+                        form.reset(); 
+                        grecaptcha.reset(); // Resetta il captcha per ordini multipli
+                        modal.style.display = 'none'; // Chiude la finestra
+                    } else {
+                        alert(result); // Mostra eventuali errori dal server
+                    }
+                    btn.innerText = originalText;
+                })
+                .catch(error => {
+                    alert('Errore di connessione. Riprova più tardi.');
+                    btn.innerText = originalText;
+                });
         });
     </script>
 
