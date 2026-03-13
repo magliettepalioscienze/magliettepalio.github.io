@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modulo Prenotazione - Scienze MMFFNN</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         body { 
             margin: 0; 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #0a5c0a; /* Sfondo verde  */
+            /* Applichiamo il font monospaziato */
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace; 
+            background-color: #f4fcf4; /* Un verde chiarissimo e neutro per lo sfondo */
             display: flex; 
             flex-direction: column; 
             align-items: center; 
@@ -17,6 +20,7 @@
             min-height: 100vh;
             box-sizing: border-box;
         }
+
         .header {
             width: 100%;
             max-width: 800px;
@@ -24,29 +28,48 @@
             justify-content: flex-start;
             margin-bottom: 20px;
         }
+
         .back-btn { 
-            color: #047857; 
+            /* IL TUO VERDE per il testo e il bordo del bottone Indietro */
+            color: #0a5c0a; 
+            border: 2px solid #0a5c0a;
+            background-color: transparent;
             text-decoration: none; 
-            font-weight: 600; 
-            font-size: 1.1em;
-            padding: 10px 15px;
-            background: rgba(4, 120, 87, 0.1);
+            font-weight: 700; 
+            font-size: 1em;
+            padding: 10px 20px;
             border-radius: 8px;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
-        .back-btn:hover { background: rgba(4, 120, 87, 0.2); }
+
+        .back-btn:hover { 
+            /* IL TUO VERDE come sfondo quando ci passi sopra */
+            background-color: #0a5c0a; 
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(10, 92, 10, 0.2);
+        }
+
         .form-container { 
             width: 100%; 
             max-width: 800px; 
             background: white; 
             border-radius: 12px; 
-            box-shadow: 0 10px 30px rgba(4, 120, 87, 0.1); 
-            height: 900px; /* Altezza per il form */
+            /* Ombra col tuo verde per richiamare la pagina principale */
+            box-shadow: 0 10px 30px rgba(10, 92, 10, 0.15); 
+            height: 900px; /* Altezza per il form, aumentala se il form è lungo */
             overflow: hidden; 
             position: relative; 
+            border: 1px solid #e2e8f0;
         }
+
         iframe { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
         }
     </style>
 </head>
