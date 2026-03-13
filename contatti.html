@@ -273,7 +273,7 @@
             btn.innerText = 'Invio in corso...';
             
             // ⚠️ INSERISCI QUI IL LINK DELLA TUA APP WEB DI GOOGLE SCRIPT ⚠️
-            const scriptURL = 'https://script.google.com/macros/s/AKfycby21XZJThTBKrdLTfuTo-709L2E2NmLeMW1kcapCKZU3nYkD7FwYUFvyxBPaDhuoCQnvg/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwO6PPPJmFftxXGklg99Zaax11dsB_oArXc53QKeqdbpnrnJQ1lpK5wR_jDmSR-tzwpug/exec';
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => response.text()) // Legge la risposta da Google
