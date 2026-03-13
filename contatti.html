@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatti - Palio Scienze MMFFNN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* STILI GENERALI (Stesso sfondo del catalogo) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+            background-image: linear-gradient(rgba(10, 92, 10, 0.85), rgba(10, 92, 10, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* PULSANTE INDIETRO */
+        .back-link {
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .back-link:hover {
+            border-bottom: 2px solid #ffffff;
+            opacity: 0.8;
+        }
+
+        /* TITOLO PAGINA */
+        h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin: 0 0 40px 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* LAYOUT GRIGLIA: INFORMAZIONI A SX, FORM A DX */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* La colonna del form è un po' più larga */
+            gap: 30px;
+        }
+
+        /* BLOCCHI (Card Material con angoli vivi) */
+        .card {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 40px;
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+            
+            /* Ombra Material (Elevation 4) */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        /* SEZIONE INFORMAZIONI */
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            background-color: #0a5c0a; /* IL TUO VERDE */
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            /* Zero arrotondamenti anche per le icone */
+            border-radius: 0; 
+        }
+
+        .info-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2em;
+            color: #0a5c0a;
+            text-transform: uppercase;
+        }
+
+        .info-text p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* SEZIONE FORM */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        /* Input Material con spigoli vivi */
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+            font-size: 1em;
+            color: #333;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            box-sizing: border-box;
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #0a5c0a; /* Focus col tuo verde */
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(10, 92, 10, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* BOTTONE INVIA */
+        .btn-submit {
+            background-color: #0a5c0a;
+            color: #ffffff;
+            border: none;
+            padding: 18px 30px;
+            font-family: inherit;
+            font-size: 1.1em;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+            
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background-color: #0d7a0d; /* Verde leggermente più chiaro per l'hover */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+
+        /* ADATTAMENTO MOBILE */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr; /* Le card si impilano una sull'altra */
+            }
+            h1 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="index.html" class="back-link">← Torna alla vetrina</a>
+
+        <h1>Contattaci</h1>
+
+        <div class="contact-wrapper">
+            
+            <div class="card">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">location_on</i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Sede</h3>
+                        <p>Dipartimento di Scienze<br>Polo Universitario MMFFNN</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">email</i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>info@palioscienze.it</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">tag</i> </div>
+                    <div class="info-text">
+                        <h3>Instagram</h3>
+                        <p>@palioscienze_mmffnn</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <form action="#" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome e Cognome</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required placeholder="Es. Alan Turing">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Indirizzo Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="alan@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="messaggio">Il tuo messaggio</label>
+                        <textarea id="messaggio" name="messaggio" class="form-control" required placeholder="Scrivi qui per info su magliette, taglie o collaborazioni..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Invia Messaggio</button>
+                    
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
