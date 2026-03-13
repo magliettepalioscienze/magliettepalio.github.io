@@ -15,11 +15,10 @@
             font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
             
             /* SFONDO FOTOGRAFICO SFOCATO */
-            /* Usiamo un'immagine di esempio (stesso stile della vetrina) e applichiamo un overlay verde */
             background-image: linear-gradient(rgba(10, 92, 10, 0.85), rgba(10, 92, 10, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Mantiene lo sfondo fermo allo scorrimento */
+            background-attachment: fixed; 
             
             color: #ffffff;
             min-height: 100vh;
@@ -32,21 +31,28 @@
             padding: 40px 20px;
         }
 
-        /* PULSANTE INDIETRO - Stile Material Text Button */
-        .back-link {
+        /* BARRA DI NAVIGAZIONE SUPERIORE (Aggiunta per ospitare il link ai contatti) */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* PULSANTE NAVIGAZIONE - Stile Material Text Button */
+        .nav-link {
             display: inline-block;
             color: #ffffff;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 30px;
             padding: 8px 0;
             border-bottom: 2px solid transparent;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         
-        .back-link:hover {
+        .nav-link:hover {
             border-bottom: 2px solid #ffffff;
             opacity: 0.8;
         }
@@ -59,14 +65,12 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 60px;
-            background: rgba(255, 255, 255, 0.05); /* Sfondo piatto e leggero */
+            background: rgba(255, 255, 255, 0.05); 
             padding: 40px;
             
-            /* ZERO ARROTONDAMENTI */
             border-radius: 0; 
             border: 1px solid rgba(255,255,255,0.1);
             
-            /* Ombra Material (Elevation 2) */
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         }
 
@@ -106,24 +110,20 @@
             position: relative;
         }
 
-        /* Wrapper immagine sollevato e squadrato */
         .banner-image-wrapper {
             background-color: #ffffff;
             padding: 20px;
             display: inline-block;
             
-            /* ZERO ARROTONDAMENTI */
             border-radius: 0; 
             transform: none; 
             
-            /* Ombra Material pronunciata (Elevation 6) */
             box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
             transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .banner-image-wrapper:hover {
             transform: translateY(-4px);
-            /* Ombra Material al passaggio del mouse (Elevation 12) */
             box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
 
@@ -132,7 +132,6 @@
             max-width: 250px;
             height: auto;
             display: block;
-            /* ZERO ARROTONDAMENTI */
             border-radius: 0; 
         }
 
@@ -153,35 +152,30 @@
             flex-direction: column;
             cursor: pointer;
             
-            /* ZERO ARROTONDAMENTI */
             border-radius: 0; 
             
-            /* Ombra Material Base (Elevation 1) */
             box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
             
-            /* Transizione scattante tipica del Material Design */
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .card:hover {
             transform: translateY(-4px);
-            /* Ombra Material Hover (Elevation 8) */
             box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
         }
 
         .card h3 {
             font-size: 1.1em;
             font-weight: 700;
-            margin: 0 0 10px 0; /* Ridotto margine inferiore per far spazio al prezzo */
+            margin: 0 0 10px 0; 
             line-height: 1.4;
             min-height: 2.8em; 
         }
 
-        /* STILE PER IL PREZZO */
         .card .price {
             font-size: 1.3em;
             font-weight: 800;
-            color: #0a5c0a; /* IL TUO VERDE per far risaltare il prezzo */
+            color: #0a5c0a; 
             margin-bottom: 15px;
         }
 
@@ -194,7 +188,6 @@
             align-items: center;
             aspect-ratio: 1 / 1; 
             
-            /* ZERO ARROTONDAMENTI */
             border-radius: 0; 
         }
 
@@ -224,7 +217,10 @@
 
     <div class="container">
         
-        <a href="index.html" class="back-link">← Torna alla vetrina</a>
+        <div class="top-nav">
+            <a href="index.html" class="nav-link">← Torna alla vetrina</a>
+            <a href="contatti.html" class="nav-link">Contatti ✉️</a>
+        </div>
 
         <div class="banner">
             <div class="banner-text">
