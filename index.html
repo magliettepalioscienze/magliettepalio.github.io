@@ -6,7 +6,6 @@
     <title>Palio Scienze MMFFNN - Vetrina Magliette</title>
     
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <style>
@@ -17,10 +16,10 @@
             height: 100%;
             font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
             background-color: #f4fcf4; 
-            overflow: hidden; /* Nasconde la barra di scorrimento laterale brutta */
+            overflow: hidden; 
         }
 
-        /* CONTAINER PER LO SCORRIMENTO MAGNETICO "FORTE" */
+        /* CONTAINER PER LO SCORRIMENTO MAGNETICO */
         .scroller-container {
             height: 100vh; 
             overflow-y: scroll; 
@@ -32,18 +31,24 @@
         section {
             height: 100vh; 
             width: 100%;
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            /* Allineamento magnetico e FRENO a ogni sezione */
             scroll-snap-align: start; 
-            scroll-snap-stop: always; /* TRUCCO: impedisce di saltare i prodotti scrollando forte */
+            scroll-snap-stop: always; 
             position: relative;
         }
 
         /* ========================================= */
-        /* HERO SECTION (PRIMA PAGINA)               */
+        /* HERO SECTION (PRIMA PAGINA CON SFONDO)    */
         /* ========================================= */
         .hero {
-            background-color: #fff;
+            /* IMMAGINE DI SFONDO QUI */
+            /* Ho aggiunto un linear-gradient chiaro sopra la foto per far leggere il testo verde */
+            background-image: linear-gradient(rgba(244, 252, 244, 0.85), rgba(244, 252, 244, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -53,19 +58,21 @@
         }
 
         .hero h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             font-weight: 800;
             text-transform: uppercase;
             color: #0a5c0a; /* IL TUO VERDE */
             margin-bottom: 20px;
             line-height: 1.1;
+            text-shadow: 2px 2px 10px rgba(255,255,255,0.8); /* Aiuta la leggibilità */
         }
 
         .hero p {
             font-size: 1.2em;
-            color: #444;
+            color: #333;
             max-width: 700px;
             margin-bottom: 50px;
+            font-weight: 700;
         }
 
         .btn-container { display: flex; gap: 20px; }
@@ -76,11 +83,12 @@
             border: 2px solid #0a5c0a;
             text-decoration: none;
             text-transform: uppercase;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.1em;
             padding: 15px 30px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            background-color: rgba(255,255,255,0.5); /* Sfondo semi-trasparente per il bottone */
         }
 
         .btn:hover {
@@ -109,44 +117,48 @@
         /* ========================================= */
         .product-section {
             display: flex;
-            flex-direction: row; /* Mette immagine e testo affiancati */
+            flex-direction: row; 
             background-color: #ffffff;
         }
 
-        /* SCHEMA ZIG-ZAG: I prodotti pari hanno testo a sinistra e immagine a destra */
         .product-section:nth-child(even) {
             flex-direction: row-reverse;
-            background-color: #f4fcf4; /* Sfondo leggermente verde per staccare */
+            background-color: #f4fcf4; 
         }
 
-        /* Metà per l'immagine */
+        /* LA METÀ PER L'IMMAGINE: ZERO BORDI, ZERO MARGINI */
         .product-image {
-            flex: 1; /* Prende il 50% dello spazio */
-            height: 100%;
+            flex: 1; 
+            height: 100vh; /* Prende tutta l'altezza dello schermo */
+            margin: 0;
+            padding: 0;
             overflow: hidden;
         }
 
         .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Taglia l'immagine in modo professionale senza deformarla */
+            object-fit: cover; 
             object-position: center;
+            display: block; /* Rimuove lo spazio vuoto fantasma sotto le immagini HTML */
+            border-radius: 0; /* Assicura che non ci siano angoli arrotondati */
         }
 
-        /* Metà per il testo */
+        /* LA METÀ PER IL TESTO */
         .product-content {
-            flex: 1; /* Prende l'altro 50% dello spazio */
+            flex: 1; 
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 8%;
+            padding: 8%; /* Lo spazio vitale attorno al testo */
             box-sizing: border-box;
+            height: 100vh; /* Allinea perfettamente al centro dello schermo */
         }
 
         .product-content h2 {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: 800;
-            color: #0a5c0a; /* IL TUO VERDE */
+            color: #0a5c0a; 
             margin-bottom: 20px;
             text-transform: uppercase;
         }
@@ -166,6 +178,7 @@
             color: #0a5c0a;
             font-weight: 700;
             border-radius: 6px;
+            align-self: flex-start; /* Evita che il box si allunghi su tutto lo schermo */
         }
 
         /* ========================================= */
@@ -175,13 +188,12 @@
             .hero h1 { font-size: 2.2em; }
             .btn-container { flex-direction: column; gap: 15px; }
             
-            /* Su telefono mettiamo l'immagine sopra e il testo sotto (50% altezza ciascuno) */
             .product-section, .product-section:nth-child(even) {
                 flex-direction: column;
             }
             .product-image { height: 50vh; flex: none; }
             .product-content { height: 50vh; flex: none; padding: 5%; justify-content: flex-start; overflow-y: auto;}
-            .product-content h2 { font-size: 1.8em; margin-top: 10px;}
+            .product-content h2 { font-size: 2em; margin-top: 10px;}
         }
     </style>
 </head>
@@ -222,7 +234,7 @@
             <div class="product-content">
                 <h2>Modello Beta</h2>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit.</p>
+                <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.</p>
                 <span class="taglie">Taglie: M, L, XL</span>
             </div>
         </section>
@@ -245,215 +257,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palio Scienze MMFFNN - Vetrina Magliette</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-    <style>
-        /* STILI GENERALI */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
-            background-color: #f4fcf4; /* Sfondo verde chiarissimo neutro */
-            overflow: hidden; /* Nascondiamo la barra di scorrimento principale */
-        }
-
-        /* IL TRUCCO MAGICO: CONTAINER PER LO SCORRIMENTO MAGNETICO */
-        .scroller-container {
-            height: 100vh; /* Altezza intera della finestra */
-            overflow-y: scroll; /* Abilitiamo lo scorrimento verticale */
-            scroll-snap-type: y mandatory; /* Attiviamo lo scroll snap verticale obbligatorio */
-            -webkit-overflow-scrolling: touch; /* Migliora lo scorrimento su dispositivi mobili */
-        }
-
-        /* STILE PER OGNI SEZIONE (HERO E PRODOTTI) */
-        section {
-            height: 100vh; /* Ogni sezione occupa tutta l'altezza dello schermo */
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
-            box-sizing: border-box;
-            scroll-snap-align: center; /* Ogni sezione si allinea al centro quando lo scorrimento si ferma */
-            position: relative;
-        }
-
-        /* SEZIONE INIZIALE (HERO) */
-        .hero {
-            background-color: #fff;
-            border-bottom: 3px solid #0a5c0a; /* IL TUO VERDE per la linea di fondo */
-        }
-
-        .hero h1 {
-            font-size: 3em;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #0a5c0a; /* IL TUO VERDE per il titolo */
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.2em;
-            color: #444;
-            max-width: 700px;
-            margin-bottom: 50px;
-        }
-
-        /* I BOTTONI NELLA HERO */
-        .btn-container {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn {
-            background-color: transparent;
-            color: #0a5c0a; /* IL TUO VERDE per il testo e bordo */
-            border: 2px solid #0a5c0a;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 1.1em;
-            padding: 15px 30px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #0a5c0a; /* IL TUO VERDE come sfondo al passaggio del mouse */
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(10, 92, 10, 0.3);
-        }
-
-        /* FRECCETTA VERSO IL BASSO */
-        .scroll-down-arrow {
-            position: absolute;
-            bottom: 30px;
-            font-size: 3em;
-            color: #0a5c0a; /* IL TUO VERDE per l'icona */
-            cursor: pointer;
-            animation: bounce 2s infinite; /* Effetto rimbalzo per attirare l'attenzione */
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* SEZIONE PRODOTTO (MODULARE) */
-        .product-section {
-            background-color: #fbfdfb; /* Un verde ancora più chiaro per le sezioni prodotto */
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .product-section:nth-child(even) {
-            background-color: #f4fcf4; /* Alterniamo lo sfondo per dare ritmo */
-        }
-
-        .product-img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .product-section h2 {
-            font-size: 2.2em;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .product-section p {
-            font-size: 1.1em;
-            color: #555;
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* ADATTAMENTO PER DISPOSITIVI MOBILI */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2em; }
-            .hero p { font-size: 1em; }
-            .btn-container { flex-direction: column; gap: 15px; }
-            .product-section h2 { font-size: 1.8em; }
-            .product-img { max-width: 280px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="scroller-container">
-
-        <section class="hero" id="inizio">
-            <h1>Scienze MMFFNN 🧬</h1>
-            <p>Preparati per il Palio più scientifico di sempre! Ecco la vetrina delle nostre magliette ufficiali.</p>
-            
-            <div class="btn-container">
-                <a href="catalogo.html" class="btn">Vai al catalogo</a>
-                <a href="#prodotto-1" class="btn">Visualizza i prodotti</a>
-            </div>
-            
-            <a href="#prodotto-1" class="scroll-down-arrow">
-                <i class="material-icons">keyboard_arrow_down</i>
-            </a>
-        </section>
-
-        <section class="product-section" id="prodotto-1">
-            <img src="https://via.placeholder.com/400x400.png?text=Maglietta+Alfa" alt="Maglietta Modello Alfa" class="product-img">
-            
-            <h2>Maglietta Modello Alfa</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-            <p><strong>Taglie disponibili:</strong> S, M, L, XL, XXL</p>
-        </section>
-
-        <section class="product-section" id="prodotto-2">
-            <img src="https://via.placeholder.com/400x400.png?text=Maglietta+Beta" alt="Maglietta Modello Beta" class="product-img">
-            
-            <h2>Maglietta Modello Beta</h2>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-            <p><strong>Taglie disponibili:</strong> M, L, XL</p>
-        </section>
-
-        <section class="product-section" id="prodotto-3">
-            <img src="https://via.placeholder.com/400x400.png?text=Maglietta+Gamma" alt="Maglietta Modello Gamma" class="product-img">
-            
-            <h2>Maglietta Modello Gamma</h2>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa.</p>
-            <p><strong>Taglie disponibili:</strong> S, M, L</p>
-        </section>
-
-    </div>
-
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
