@@ -25,6 +25,268 @@
             padding: 40px 20px;
         }
 
+        /* PULSANTE INDIETRO - Stile Material Text Button */
+        .back-link {
+            display: inline-block;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            /* Curva di animazione Material */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .back-link:hover {
+            border-bottom: 2px solid #ffffff;
+            opacity: 0.8;
+        }
+
+        /* ========================================= */
+        /* BANNER IN ALTO                             */
+        /* ========================================= */
+        .banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.05); /* Sfondo piatto e leggero, no gradienti complessi */
+            padding: 40px;
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+            border: 1px solid rgba(255,255,255,0.1);
+            
+            /* Ombra Material (Elevation 2) */
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .banner-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .banner-text .category {
+            font-weight: 700;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a7f3d0; 
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .banner-text h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .banner-text p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin: 0;
+            color: #e2e8f0;
+        }
+
+        .banner-image {
+            flex: 0 0 350px; 
+            text-align: right;
+            position: relative;
+        }
+
+        /* Il wrapper dell'immagine ora è un blocco netto e sollevato */
+        .banner-image-wrapper {
+            background-color: #ffffff;
+            padding: 20px;
+            display: inline-block;
+            
+            /* ZERO ARROTONDAMENTI e nessuna inclinazione */
+            border-radius: 0; 
+            transform: none; 
+            
+            /* Ombra Material pronunciata (Elevation 6) */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .banner-image-wrapper:hover {
+            transform: translateY(-4px);
+            /* Ombra Material al passaggio del mouse (Elevation 12) */
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .banner-image img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            display: block;
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+        }
+
+        /* ========================================= */
+        /* GRIGLIA PRODOTTI (Material Cards)         */
+        /* ========================================= */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 25px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+            
+            /* Ombra Material Base (Elevation 1) */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            
+            /* Transizione scattante tipica del Material Design */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            /* Ombra Material Hover (Elevation 8) */
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+
+        .card h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            line-height: 1.4;
+            min-height: 2.8em; 
+        }
+
+        .card-img-container {
+            background-color: #f8fafc; 
+            padding: 20px;
+            flex-grow: 1; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1 / 1; 
+            
+            /* ZERO ARROTONDAMENTI */
+            border-radius: 0; 
+        }
+
+        .card-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; 
+            mix-blend-mode: multiply; 
+        }
+
+        /* ADATTAMENTO PER TABLET E CELLULARI */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(2, 1fr); } 
+            .banner { flex-direction: column; text-align: center; }
+            .banner-text { margin-bottom: 40px; }
+            .banner-image { text-align: center; }
+            .banner-image-wrapper { transform: none; }
+        }
+
+        @media (max-width: 600px) {
+            .products-grid { grid-template-columns: 1fr; } 
+            .banner-text h1 { font-size: 2.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="index.html" class="back-link">← Torna alla vetrina</a>
+
+        <div class="banner">
+            <div class="banner-text">
+                <span class="category">Collezione Ufficiale</span>
+                <h1>Catalogo<br>Palio Scienze</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="banner-image">
+                <div class="banner-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80" alt="Prodotto in evidenza">
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            
+            <div class="card">
+                <h3>Lorem Ipsum Dolor Sit Amet</h3>
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=400&q=80" alt="Prodotto 1">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Consectetur Adipiscing Elit</h3>
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Prodotto 2">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Sed Do Eiusmod Tempor</h3>
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=400&q=80" alt="Prodotto 3">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Incididunt Ut Labore Et Dolore</h3>
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=400&q=80" alt="Prodotto 4">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo - Palio Scienze MMFFNN</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* STILI GENERALI */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+            background-color: #0a5c0a; /* IL TUO VERDE COME SFONDO */
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* CONTENITORE PRINCIPALE PER CENTRARE IL CONTENUTO */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
         /* PULSANTE INDIETRO */
         .back-link {
             display: inline-block;
