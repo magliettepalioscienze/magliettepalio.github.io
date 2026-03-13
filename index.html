@@ -43,8 +43,6 @@
         /* HERO SECTION (PRIMA PAGINA CON SFONDO)    */
         /* ========================================= */
         .hero {
-            /* IMMAGINE DI SFONDO QUI */
-            /* Ho aggiunto un linear-gradient chiaro sopra la foto per far leggere il testo verde */
             background-image: linear-gradient(rgba(244, 252, 244, 0.85), rgba(244, 252, 244, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
@@ -61,10 +59,10 @@
             font-size: 3.5em;
             font-weight: 800;
             text-transform: uppercase;
-            color: #0a5c0a; /* IL TUO VERDE */
+            color: #0a5c0a; 
             margin-bottom: 20px;
             line-height: 1.1;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.8); /* Aiuta la leggibilità */
+            text-shadow: 2px 2px 10px rgba(255,255,255,0.8); 
         }
 
         .hero p {
@@ -88,7 +86,7 @@
             padding: 15px 30px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            background-color: rgba(255,255,255,0.5); /* Sfondo semi-trasparente per il bottone */
+            background-color: rgba(255,255,255,0.5); 
         }
 
         .btn:hover {
@@ -126,10 +124,9 @@
             background-color: #f4fcf4; 
         }
 
-        /* LA METÀ PER L'IMMAGINE: ZERO BORDI, ZERO MARGINI */
         .product-image {
             flex: 1; 
-            height: 100vh; /* Prende tutta l'altezza dello schermo */
+            height: 100vh; 
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -140,19 +137,18 @@
             height: 100%;
             object-fit: cover; 
             object-position: center;
-            display: block; /* Rimuove lo spazio vuoto fantasma sotto le immagini HTML */
-            border-radius: 0; /* Assicura che non ci siano angoli arrotondati */
+            display: block; 
+            border-radius: 0; 
         }
 
-        /* LA METÀ PER IL TESTO */
         .product-content {
             flex: 1; 
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 8%; /* Lo spazio vitale attorno al testo */
+            padding: 8%; 
             box-sizing: border-box;
-            height: 100vh; /* Allinea perfettamente al centro dello schermo */
+            height: 100vh; 
         }
 
         .product-content h2 {
@@ -178,12 +174,16 @@
             color: #0a5c0a;
             font-weight: 700;
             border-radius: 6px;
-            align-self: flex-start; /* Evita che il box si allunghi su tutto lo schermo */
+            align-self: flex-start; 
         }
 
-        /* ========================================= */
-        /* ADATTAMENTO PER CELLULARI                 */
-        /* ========================================= */
+        /* Nuova classe per la schermata finale dei contatti senza sfondo */
+        .final-section {
+            background-image: none;
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2em; }
             .btn-container { flex-direction: column; gap: 15px; }
@@ -248,6 +248,14 @@
                 <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Phasellus ullamcorper ipsum rutrum nunc.</p>
                 <p>Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla eros, ultricies sit amet.</p>
                 <span class="taglie">Taglie: XS, S, M, L</span>
+            </div>
+        </section>
+
+        <section class="hero final-section" id="sezione-contatti">
+            <h2>Hai domande o vuoi prenotare?</h2>
+            <p>Contattaci per informazioni su taglie, disponibilità o per riservare la tua maglietta.</p>
+            <div class="btn-container">
+                <a href="contatti.html" class="btn">Vai ai Contatti</a>
             </div>
         </section>
 
