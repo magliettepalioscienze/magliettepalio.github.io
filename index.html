@@ -3,115 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magliette Palio delle Scienze</title>
+    <title>Magliette Palio Scienze MMFFNN</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* Stile generale e Sfondo Sfumato */
         body { 
             margin: 0; 
             font-family: 'Poppins', sans-serif; 
-            /* Puoi cambiare i colori qui sotto se il Palio ha colori specifici! */
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); 
+            
+            /* Sfondo Base64: qui ho messo un piccolo pattern di esempio. 
+               Sostituisci tutta la stringa tra gli apici singoli con la tua! */
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAACVJREFUKFNjZCASMDKgAhghQs//YxODxGEK0DUyokvwY2AkwgQA4lwH/x1+tY0AAAAASUVORK5CYII=');
+            
+            /* Decommenta questa riga (togli i /* ) se la tua immagine è una foto grande da adattare allo schermo */
+            /* background-size: cover; background-position: center; */
+            
+            background-color: #ecfdf5; /* Verde chiarissimo di fallback */
             color: #333; 
             min-height: 100vh; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            padding: 20px; 
-            box-sizing: border-box;
+            text-align: center;
         }
         
-        /* La "Card" bianca centrale */
         .card { 
-            background: rgba(255, 255, 255, 0.98); 
-            max-width: 800px; 
-            width: 100%; 
-            border-radius: 24px; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
-            overflow: hidden; 
+            background: rgba(255, 255, 255, 0.95); /* Sfondo bianco semi-trasparente */
+            padding: 50px 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(4, 120, 87, 0.2); 
+            max-width: 600px; 
+            width: 90%; 
         }
         
-        /* L'intestazione della Card */
-        .header { 
-            background: #1e293b; 
-            color: white; 
-            padding: 40px 20px; 
-            text-align: center; 
-        }
-        .header h1 { 
-            margin: 0; 
+        h1 { 
+            color: #047857; /* Verde scuro stile Scienze */
             font-size: 2.5em; 
-            letter-spacing: 1px; 
+            margin-top: 0;
+            margin-bottom: 15px; 
+            line-height: 1.2;
         }
-        .header p { 
-            margin: 10px 0 0; 
+        
+        p { 
+            color: #4b5563; 
             font-size: 1.1em; 
-            color: #cbd5e1;
+            margin-bottom: 40px; 
         }
         
-        /* Contenuto e spazio per il modulo */
-        .content { 
-            padding: 30px 40px; 
-            text-align: center; 
-        }
-        .content > p {
-            margin-bottom: 25px;
-            color: #475569;
-            line-height: 1.6;
-        }
-        
-        /* Il box dove andrà Google Forms */
-        .form-container { 
-            width: 100%; 
-            height: 800px; /* Altezza del modulo */
-            border-radius: 12px; 
-            background: #f8fafc; 
-            border: 2px dashed #cbd5e1; /* Bordo tratteggiato temporaneo */
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            overflow: hidden;
-            position: relative;
-        }
-        .form-container iframe { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%; 
-            height: 100%; 
-            border: none; 
-        }
-        .placeholder-text { 
-            color: #64748b; 
+        .btn { 
+            background: #10b981; /* Verde smeraldo acceso */
+            color: white; 
+            text-decoration: none; 
+            padding: 18px 40px; 
+            font-size: 1.2em; 
             font-weight: 600; 
-            font-size: 1.2em;
+            border-radius: 50px; 
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); 
+            transition: all 0.3s ease; 
+            display: inline-block; 
         }
-
-        /* Adattamento per gli schermi piccoli (cellulari) */
-        @media (max-width: 600px) {
-            .header h1 { font-size: 2em; }
-            .content { padding: 20px; }
-            .form-container { height: 900px; } /* Più alto sui telefoni per evitare lo scroll doppio */
+        
+        .btn:hover { 
+            background: #059669; 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6); 
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="header">
-            <h1>Palio delle Scienze 🧬</h1>
-            <p>Prenotazione Ufficiale Magliette</p>
-        </div>
+        <h1>Palio delle Scienze MMFFNN 🧬</h1>
+        <p>Prenota ora la tua maglietta ufficiale. Ricorda: ti servirà accedere con Google per confermare la tua identità.</p>
         
-        <div class="content">
-            <p>Compila il modulo qui sotto per assicurarti la tua maglietta. <br><strong>L'accesso con Google è richiesto</strong> per confermare la tua identità ed evitare doppie prenotazioni.</p>
-            
-            <div class="form-container">
-                
-                <p class="placeholder-text">⏳ Inseriremo qui il modulo di Google...</p>
-                
-                </div>
-        </div>
+        <a href="prenota.html" class="btn">Prenota la Maglietta 👕</a>
     </div>
 
 </body>
