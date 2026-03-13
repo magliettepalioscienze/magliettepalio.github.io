@@ -282,6 +282,22 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label for="taglia">Taglia (Se applicabile)</label>
+                    <select id="taglia" name="Taglia" class="form-control" required>
+                        <option value="S">Taglia S</option>
+                        <option value="M" selected>Taglia M</option>
+                        <option value="L">Taglia L</option>
+                        <option value="XL">Taglia XL</option>
+                        <option value="Non Applicabile">Non applicabile (es. Accessori)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantita">Quantità</label>
+                    <input type="number" id="quantita" name="Quantita" class="form-control" min="1" max="20" value="1" required>
+                </div>
+                
                 <div class="g-recaptcha" data-sitekey="6Ld4aYksAAAAAEwDuO_1nv_SZDKQSXOJ1FIy32l4" style="margin-bottom: 25px;"></div>
 
                 <button type="submit" class="btn-submit">Conferma Prenotazione</button>
@@ -339,7 +355,7 @@
             btn.innerText = 'Elaborazione...';
             
             // ⚠️ INSERISCI QUI IL LINK DEL TUO SCRIPT DI GOOGLE SHEETS (PER IL CATALOGO) ⚠️
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwoF4k_UYcbDQO1uU14zC8di3-jXBGzqWXz9A0sKt0LaehIdMdvqaUY3maI8uiH7xln/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyq4tDeC-PDTMPfSUdZpRK21YudxvJSVWnoZCX9Xc0NmRUsWmbYvVhynYfTOw1uu2xF/exec';
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => response.text()) 
