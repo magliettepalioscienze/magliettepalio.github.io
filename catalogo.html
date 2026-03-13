@@ -185,33 +185,58 @@
         /* ========================================= */
         /* ADATTAMENTO PER TABLET E CELLULARI (FIX IOS)*/
         /* ========================================= */
+        /* ========================================= */
+        /* ADATTAMENTO PER TABLET E CELLULARI (FIX iOS) */
+        /* ========================================= */
         @media (max-width: 1024px) {
             .products-grid { grid-template-columns: repeat(2, 1fr); } 
             
-            /* Diciamo al banner di prendere il 100% della larghezza e annulliamo i limiti */
             .banner { 
                 flex-direction: column; 
                 text-align: center; 
-                width: 100%; 
-                box-sizing: border-box; 
+                width: 100%; /* Forza la larghezza piena */
+                box-sizing: border-box; /* Calcola i bordi correttamente */
+                padding: 30px 20px; /* Riduciamo il padding interno su tablet/telefono */
             }
+            
             .banner-text { 
+                flex: none; /* Annulla le proporzioni desktop */
+                width: 100%;
                 max-width: 100%; 
-                margin-bottom: 40px; 
+                margin-bottom: 30px; 
             }
+            
             .banner-image { 
-                flex: none; /* Annulla il limite dei 350px che faceva impazzire l'iPhone */
+                flex: none; /* Rimuove il limite rigido dei 350px */
                 width: 100%; 
-                max-width: 100%; 
                 text-align: center; 
-                margin-top: 10px;
+            }
+            
+            .banner-image-wrapper {
+                max-width: 100%;
+                box-sizing: border-box;
             }
         }
 
         @media (max-width: 600px) {
+            body, html {
+                overflow-x: hidden; /* IMPEDISCE LO SCORRIMENTO ORIZZONTALE BASTARDO SU iOS */
+            }
+            
+            .container {
+                padding: 20px 15px; /* Meno spazio ai bordi dello schermo su telefono */
+                width: 100%;
+                box-sizing: border-box;
+            }
+
             .products-grid { grid-template-columns: 1fr; } 
-            .banner-text h1 { font-size: 2.5em; }
-            .modal-content { padding: 30px 20px; }
+            
+            .banner-text h1 { font-size: 2.2em; }
+            
+            .modal-content { 
+                padding: 30px 20px; 
+                width: 95%; /* Lascia un piccolo margine ai lati nel form pop-up */
+            }
         }
     </style>
 </head>
