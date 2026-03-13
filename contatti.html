@@ -236,8 +236,7 @@
             </div>
 
             <div class="card">
-                <form action="https://formspree.io/f/xqeylkdz" method="POST">
-                    
+                <form id="contact-form">                    
                     <div class="form-group">
                         <label for="nome">Nome e Cognome</label>
                         <input type="text" id="nome" name="nome" class="form-control" required placeholder="Es. Alan Turing">
@@ -261,6 +260,30 @@
         </div>
 
     </div>
-
+<script>
+        const form = document.getElementById('contact-form');
+        
+        form.addEventListener('submit', e => {
+            e.preventDefault(); 
+            
+            const btn = document.querySelector('.btn-submit');
+            const originalText = btn.innerText;
+            btn.innerText = 'Invio in corso...';
+            
+            // INSERISCI QUI IL LINK LUNGHISSIMO DELLO SCRIPT DEI CONTATTI
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwkDa61eEmEiQaUQpOd5ZWB1Zbr8r5UaDFBxxWx1HWTPNG8twFRhOXBumnC5ewcPhMrQw/exec';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    alert('Messaggio inviato con successo! Ti risponderemo presto.');
+                    form.reset(); 
+                    btn.innerText = originalText;
+                })
+                .catch(error => {
+                    alert('Errore di connessione. Riprova più tardi.');
+                    btn.innerText = originalText;
+                });
+        });
+    </script>
 </body>
 </html>
