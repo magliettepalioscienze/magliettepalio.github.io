@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palio Scienze MMFFNN - Vetrina Magliette</title>
+    <title>Contatti - Palio Scienze MMFFNN</title>
     
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,296 +11,286 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <style>
-        /* STILI GENERALI */
-        body, html {
+        /* STILI GENERALI (Stesso sfondo del catalogo) */
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
             font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
-            background-color: #f4fcf4; 
-            overflow: hidden; 
-        }
-
-        /* CONTAINER PER LO SCORRIMENTO MAGNETICO */
-        .scroller-container {
-            height: 100vh; 
-            overflow-y: scroll; 
-            scroll-snap-type: y mandatory; 
-            -webkit-overflow-scrolling: touch;
-        }
-
-        section {
-            height: 100vh; 
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-snap-align: start; 
-            scroll-snap-stop: always; 
-            position: relative;
-        }
-
-        /* HERO SECTION */
-        .hero {
-            background-image: linear-gradient(rgba(244, 252, 244, 0.85), rgba(244, 252, 244, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
+            background-image: linear-gradient(rgba(10, 92, 10, 0.85), rgba(10, 92, 10, 0.95)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=2000&q=80');
             background-size: cover;
             background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
         }
 
-        .hero h1 {
-            font-size: 3.5em;
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #0a5c0a; 
-            margin-bottom: 20px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.8); 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .hero p {
-            font-size: 1.2em;
-            color: #333;
-            max-width: 700px;
-            margin-bottom: 50px;
-            font-weight: 700;
-        }
-
-        .btn-container { display: flex; gap: 20px; }
-
-        .btn {
-            background-color: transparent;
-            color: #0a5c0a;
-            border: 2px solid #0a5c0a;
+        /* PULSANTE INDIETRO */
+        .back-link {
+            display: inline-block;
+            color: #ffffff;
             text-decoration: none;
+            font-weight: 700;
             text-transform: uppercase;
-            font-weight: 800;
-            font-size: 1.1em;
-            padding: 15px 30px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background-color: rgba(255,255,255,0.5); 
-        }
-
-        .btn:hover {
-            background-color: #0a5c0a;
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(10, 92, 10, 0.3);
-        }
-
-        .scroll-down-arrow {
-            position: absolute;
-            bottom: 30px;
-            font-size: 3em;
-            color: #0a5c0a;
-            cursor: pointer;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        /* LAYOUT PRODOTTI */
-        .product-section { display: flex; flex-direction: row; background-color: #ffffff; }
-        .product-section:nth-child(even) { flex-direction: row-reverse; background-color: #f4fcf4; }
-
-        .product-image { flex: 1; height: 100vh; margin: 0; padding: 0; overflow: hidden; }
-        .product-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; border-radius: 0; }
-
-        .product-content {
-            flex: 1; display: flex; flex-direction: column; justify-content: center;
-            padding: 8%; box-sizing: border-box; height: 100vh; 
-        }
-        .product-content h2 { font-size: 3em; font-weight: 800; color: #0a5c0a; margin-bottom: 20px; text-transform: uppercase; }
-        .product-content p { font-size: 1.1em; color: #444; line-height: 1.8; margin-bottom: 15px; }
-        .taglie {
-            display: inline-block; margin-top: 20px; padding: 10px 15px;
-            background-color: rgba(10, 92, 10, 0.1); color: #0a5c0a; font-weight: 700;
-            border-radius: 6px; align-self: flex-start; 
-        }
-
-        /* SEZIONE FINALE CON FORM */
-        .final-section {
-            background-image: none;
-            background-color: #ffffff;
-            border-top: 1px solid #e2e8f0;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        
-        .final-section h2 { font-size: 2.5em; color: #0a5c0a; text-transform: uppercase; margin-bottom: 10px; }
-        .final-section > p { margin-bottom: 30px; color: #555; font-size: 1.1em; }
-
-        /* STILI DEL FORM DENTRO L'INDEX */
-        #contact-form-index { width: 100%; max-width: 500px; text-align: left; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: 700; color: #333; text-transform: uppercase; font-size: 0.85em; }
-        
-        .form-control {
-            width: 100%; padding: 12px; font-family: 'JetBrains Mono', monospace; font-size: 1em;
-            background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0;
-            box-sizing: border-box; transition: all 0.3s ease;
-        }
-        .form-control:focus { outline: none; border-color: #0a5c0a; background-color: #ffffff; box-shadow: 0 4px 6px rgba(10, 92, 10, 0.1); }
-        textarea.form-control { resize: vertical; min-height: 80px; }
-
-        .btn-submit {
-            background-color: #0a5c0a; color: #ffffff; border: none; padding: 15px;
-            font-family: inherit; font-size: 1.1em; font-weight: 800; text-transform: uppercase;
-            cursor: pointer; width: 100%; border-radius: 0; box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .btn-submit:hover { transform: translateY(-2px); background-color: #0d7a0d; box-shadow: 0 10px 20px rgba(0,0,0,0.19); }
+        
+        .back-link:hover {
+            border-bottom: 2px solid #ffffff;
+            opacity: 0.8;
+        }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2em; }
-            .btn-container { flex-direction: column; gap: 15px; }
-            .product-section, .product-section:nth-child(even) { flex-direction: column; }
-            .product-image { height: 40vh; flex: none; }
-            .product-content { height: 60vh; flex: none; padding: 5%; justify-content: flex-start; overflow-y: auto;}
-            .product-content h2 { font-size: 2em; margin-top: 10px;}
-            .final-section h2 { font-size: 1.8em; text-align: center; }
-            #contact-form-index { padding: 0 20px; }
+        /* TITOLO PAGINA */
+        h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            margin: 0 0 40px 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* LAYOUT GRIGLIA: INFORMAZIONI A SX, FORM A DX */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; 
+            gap: 30px;
+        }
+
+        /* BLOCCHI (Card Material con angoli vivi) */
+        .card {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 40px;
+            border-radius: 0; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        /* SEZIONE INFORMAZIONI */
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            background-color: #0a5c0a; 
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border-radius: 0; 
+        }
+
+        .info-text h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.2em;
+            color: #0a5c0a;
+            text-transform: uppercase;
+        }
+
+        .info-text p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* SEZIONE FORM */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+            font-size: 1em;
+            color: #333;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            box-sizing: border-box;
+            border-radius: 0; 
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #0a5c0a; 
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(10, 92, 10, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* BOTTONE INVIA */
+        .btn-submit {
+            background-color: #0a5c0a;
+            color: #ffffff;
+            border: none;
+            padding: 18px 30px;
+            font-family: inherit;
+            font-size: 1.1em;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 1px;
+            border-radius: 0; 
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background-color: #0d7a0d; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+
+        /* ADATTAMENTO MOBILE */
+        @media (max-width: 900px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr; 
+            }
+            h1 { font-size: 2.5em; }
         }
     </style>
 </head>
 <body>
 
-    <div class="scroller-container">
+    <div class="container">
+        
+        <a href="index.html" class="back-link">← Torna alla vetrina</a>
 
-        <section class="hero" id="inizio">
-            <h1>Scienze MMFFNN 🧬</h1>
-            <p>Preparati per il Palio più scientifico di sempre! Scorri verso il basso per scoprire la nuova collezione esclusiva.</p>
+        <h1>Contattaci</h1>
+
+        <div class="contact-wrapper">
             
-            <div class="btn-container">
-                <a href="catalogo.html" class="btn">Vai al catalogo</a>
-                <a href="#prodotto-1" class="btn">Visualizza i prodotti</a>
-            </div>
-            
-            <a href="#prodotto-1" class="scroll-down-arrow">
-                <i class="material-icons">keyboard_arrow_down</i>
-            </a>
-        </section>
-
-        <section class="product-section" id="prodotto-1">
-            <div class="product-image">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=80" alt="Maglietta Modello Alfa">
-            </div>
-            <div class="product-content">
-                <h2>Modello Alfa</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                <span class="taglie">Taglie: S, M, L, XL</span>
-            </div>
-        </section>
-
-        <section class="product-section" id="prodotto-2">
-            <div class="product-image">
-                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80" alt="Maglietta Modello Beta">
-            </div>
-            <div class="product-content">
-                <h2>Modello Beta</h2>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident.</p>
-                <span class="taglie">Taglie: M, L, XL</span>
-            </div>
-        </section>
-
-        <section class="product-section" id="prodotto-3">
-            <div class="product-image">
-                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1000&q=80" alt="Maglietta Modello Gamma">
-            </div>
-            <div class="product-content">
-                <h2>Modello Gamma</h2>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Phasellus ullamcorper ipsum rutrum nunc.</p>
-                <span class="taglie">Taglie: XS, S, M, L</span>
-            </div>
-        </section>
-
-        <section class="hero final-section" id="sezione-contatti">
-            <h2>Hai domande?</h2>
-            <p>Contattaci per informazioni o visita il <a href="catalogo.html" style="color:#0a5c0a; font-weight:bold;">Catalogo</a>.</p>
-            
-            <form id="contact-form-index">
-                <div class="form-group">
-                    <label for="nome">Nome e Cognome</label>
-                    <input type="text" id="nome" name="nome" class="form-control" required placeholder="Es. Alan Turing">
+            <div class="card">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">location_on</i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Sede</h3>
+                        <p>Dipartimento di Scienze<br>Polo Universitario MMFFNN</p>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Indirizzo Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required placeholder="alan@example.com">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">email</i>
+                    </div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>info@palioscienze.it</p>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="messaggio">Messaggio</label>
-                    <textarea id="messaggio" name="messaggio" class="form-control" required placeholder="Scrivi qui..."></textarea>
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="material-icons">tag</i> </div>
+                    <div class="info-text">
+                        <h3>Instagram</h3>
+                        <p>@palioscienze_mmffnn</p>
+                    </div>
                 </div>
+            </div>
 
-                <div class="g-recaptcha" data-sitekey="6Ld4aYksAAAAAEwDuO_1nv_SZDKQSXOJ1FIy32l4" style="margin-bottom: 20px;"></div>
+            <div class="card">
+                <form id="contact-form">
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome e Cognome</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required placeholder="Es. Alan Turing">
+                    </div>
 
-                <button type="submit" class="btn-submit">Invia Messaggio</button>
-            </form>
-        </section>
+                    <div class="form-group">
+                        <label for="email">Indirizzo Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required placeholder="alan@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="messaggio">Il tuo messaggio</label>
+                        <textarea id="messaggio" name="messaggio" class="form-control" required placeholder="Scrivi qui per info su magliette, taglie o collaborazioni..."></textarea>
+                    </div>
+
+                    <div class="g-recaptcha" data-sitekey="6Ld4aYksAAAAAEwDuO_1nv_SZDKQSXOJ1FIy32l4" style="margin-bottom: 25px;"></div>
+
+                    <button type="submit" class="btn-submit">Invia Messaggio</button>
+                    
+                </form>
+            </div>
+
+        </div>
 
     </div>
 
     <script>
-        // Scorrimento morbido per la freccina
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Gestione invio modulo a Google Sheets
-        const form = document.getElementById('contact-form-index');
+        const form = document.getElementById('contact-form');
         
         form.addEventListener('submit', e => {
             e.preventDefault(); 
             
-            // 1. Controllo reCAPTCHA
+            // CONTROLLO CAPTCHA: Se non è spuntato, blocca l'invio
             var recaptchaResponse = grecaptcha.getResponse();
             if(recaptchaResponse.length === 0) {
                 alert("Per favore, spunta la casella 'Non sono un robot' prima di inviare.");
                 return;
             }
             
-            // 2. Animazione bottone
             const btn = document.querySelector('.btn-submit');
             const originalText = btn.innerText;
             btn.innerText = 'Invio in corso...';
             
-            // 3. SOSTITUISCI QUESTO LINK CON L'URL DELLA TUA APP WEB GOOGLE (Script Contatti)
-            const scriptURL = 'INSERISCI_QUI_IL_LINK_APP_WEB_CONTATTI';
+            // ⚠️ INSERISCI QUI IL LINK DELLA TUA APP WEB DI GOOGLE SCRIPT ⚠️
+            const scriptURL = 'https://script.google.com/macros/s/AKfycby21XZJThTBKrdLTfuTo-709L2E2NmLeMW1kcapCKZU3nYkD7FwYUFvyxBPaDhuoCQnvg/exec';
             
-            // 4. Invio dei dati
             fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => response.text())
+                .then(response => response.text()) // Legge la risposta da Google
                 .then(result => {
                     if(result === "Successo") {
-                        alert('Messaggio inviato! Ti risponderemo presto.');
+                        alert('Messaggio inviato con successo! Ti risponderemo presto.');
                         form.reset(); 
-                        grecaptcha.reset(); // Resetta il captcha visivamente
+                        grecaptcha.reset(); // Svuota il captcha
                     } else {
-                        alert(result); // Mostra eventuali errori dal server Google
-                        grecaptcha.reset();
+                        // Mostra eventuali errori generati dal server (es. captcha fallito)
+                        alert(result); 
                     }
                     btn.innerText = originalText;
                 })
                 .catch(error => {
                     alert('Errore di connessione. Riprova più tardi.');
                     btn.innerText = originalText;
-                    grecaptcha.reset();
                 });
         });
     </script>
